@@ -41,6 +41,14 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("first-player", (data) => {
+    const otherClient = findClient(socket);
+    if (otherClient !== undefined) {
+      otherClient.emit("first-player",);
+      console.log(`Primeiro jogador é: ${data}`);
+    }
+  });
+
   // Jogador aceitou a desistencia
   socket.on("acept-give-up", (data) => {
     const otherClient = findClient(socket);
