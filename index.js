@@ -8,8 +8,10 @@ const clients = [];
 
 io.on("connection", (socket) => {
   if (clients.length < 2) clients.push(socket);
+  console.log(`Client conectado: ${socket.id}`);
 
   socket.on("message", (data) => {
+    console.log('Mensagem recebida');
     const otherClient = findClient(socket);
     if (otherClient !== undefined) {
       otherClient.emit("message", `${data}`);
@@ -19,6 +21,7 @@ io.on("connection", (socket) => {
   socket.on("board-moviment", (data) => {
     const otherClient = findClient(socket);
     if (otherClient !== undefined) {
+      console.log(data);
       otherClient.emit("board-moviment", `${data}`);
       console.log(`Movida por ${otherClient.id} : ${data}`);
     }
@@ -42,6 +45,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("first-player", (data) => {
+    console.log('Primeiro player escolhido');
     const otherClient = findClient(socket);
     if (otherClient !== undefined) {
       otherClient.emit("first-player",);
@@ -72,6 +76,7 @@ server.listen(3000, () => {
 });
 
 function findClient(socket) {
+  console.log('Procurando client');
   console.log(socket.id);
   return clients.find((_client) => _client.id !== socket.id);
 }
