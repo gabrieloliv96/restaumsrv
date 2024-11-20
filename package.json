@@ -1,13 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "servidor socket do jogo gekitai",
+  "description": "servidor socket do jogo reversi",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "edilson14",
+  "author": "Gabriel",
   "license": "ISC",
   "dependencies": {
     "socket.io": "^4.8.1"
